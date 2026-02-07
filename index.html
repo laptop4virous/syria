@@ -903,7 +903,12 @@
             const currencies = Object.keys(currentRates).filter(code => code !== baseCurrency && currencyInfo[code]);
             
             grid.innerHTML = currencies.map(code => {
-                const rate = currentRates[code];
+                let rate = currentRates[code];
+                // تحويل الليرة السورية إلى القديمة (عرض فقط)
+                if (code === 'SYP') {
+                rate = rate * 1000;
+                }
+
                 const info = currencyInfo[code];
                 const change = (Math.random() * 2 - 1).toFixed(2);
                 const isPositive = change >= 0;
