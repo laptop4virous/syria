@@ -962,7 +962,7 @@
         // تحويل العملة حسب العملة الأساسية
         const usdToTry = currentRates['TRY'] || 1;
         const usdToSyp = currentRates['SYP'] || 13000;
-
+        const usdToSypOld = usdToSyp * 1000; // الليرة السورية القديمة
 
         const goldGrid = document.getElementById('goldGrid');
 
