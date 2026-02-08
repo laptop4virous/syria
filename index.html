@@ -879,7 +879,11 @@
                     <div class="converter-tabs">
                         <button class="converter-tab active" onclick="switchConverterTab('currency')">💱 محول العملات</button>
                         <button class="converter-tab" onclick="switchConverterTab('gold')">🪙 محول الذهب</button>
-                        <button class="converter-tab" onclick="switchConverterTab('syrian')">🇸🇾 محول الليرة السورية</button>
+                        <button class="converter-tab" onclick="switchConverterTab('syrian')">
+                            <span class="inline-flag" id="syrianTabFlag"></span>
+                            محول الليرة السورية
+                        </button>
+
                     </div>
 
                     <!-- Currency Converter -->
@@ -1032,6 +1036,14 @@
         let useAutoLocation = true;
 
         const SYRIAN_FLAG_SVG = '<img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 900 600\'%3E%3Cpath fill=\'%23007A3D\' d=\'M0 0h900v200H0z\'/%3E%3Cpath fill=\'%23FFF\' d=\'M0 200h900v200H0z\'/%3E%3Cpath fill=\'%23000\' d=\'M0 400h900v200H0z\'/%3E%3Cg fill=\'%23CE1126\'%3E%3Cpath d=\'M225 250l17 52h55l-44 32 17 52-45-33-45 33 17-52-44-32h55z\'/%3E%3Cpath d=\'M450 250l17 52h55l-44 32 17 52-45-33-45 33 17-52-44-32h55z\'/%3E%3Cpath d=\'M675 250l17 52h55l-44 32 17 52-45-33-45 33 17-52-44-32h55z\'/%3E%3C/g%3E%3C/svg%3E" style="width: 2rem; height: auto; border-radius: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const flagHolder = document.getElementById('syrianTabFlag');
+            if (flagHolder) {
+                flagHolder.innerHTML = SYRIAN_FLAG_SVG;
+            }
+         });
+
 
         const currencyOrder = ['SYP', 'TRY', 'EGP', 'JOD', 'SAR', 'AED', 'QAR', 'KWD', 'EUR', 'GBP', 'USD', 'JPY', 'CNY'];
 
