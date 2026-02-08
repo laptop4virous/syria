@@ -1484,5 +1484,12 @@
         setInterval(fetchWeather, 300000);
         setInterval(fetchGoldPrices, 60000);
     </script>
+
+    <script>
+  const script = document.createElement('script');
+  script.src = `app.js?v=${Date.now()}`;
+  document.body.appendChild(script);
+</script>
+
 </body>
 </html>
