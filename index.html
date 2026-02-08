@@ -1070,15 +1070,16 @@
         };
 
         // Format number: remove last digit for SYP, add thousands separator
-        function formatPrice(num, isSYP = false, isTRY = false) {
-            if (isSYP) {
-                return value.toLocaleString('ar-EG', { maximumFractionDigits: 0 }); // لليرة السورية بدون كسور
-            } else if (isTRY) {
-                 return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); // الليرة التركية مع كسور
-            } else {
+function formatPrice(value, isSYP = false, isTRY = false) {
+    if (isSYP) {
+        return value.toLocaleString('ar-EG', { maximumFractionDigits: 0 }); // لليرة السورية بدون كسور
+    } else if (isTRY) {
+        return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); // الليرة التركية مع كسور
+    } else {
         return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            }
-         }
+    }
+}
+
 
         // Get SYP rate adjusted (divide by 100 instead of 1000)
         function getSYPRate(baseRate) {
