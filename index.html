@@ -1486,14 +1486,8 @@
     </script>
 
   <!-- سكربت يضيف app.js مع timestamp تلقائي -->
-  <script>
-    (function() {
-      const script = document.createElement('script');
-      // Date.now() يعطي رقم فريد كل مرة
-      script.src = `app.js?v=${Date.now()}`;
-      script.async = false; // لتأكد تحميله بالترتيب مع باقي السكربتات
-      document.body.appendChild(script);
-    })();
-  </script>
+<script src="app.js?v=<?= Date.now() ?>"></script>
+<link rel="stylesheet" href="style.css?v=<?= Date.now() ?>">
+
 </body>
 </html>
