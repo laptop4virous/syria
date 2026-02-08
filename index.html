@@ -1485,11 +1485,15 @@
         setInterval(fetchGoldPrices, 60000);
     </script>
 
-    <script>
-  const script = document.createElement('script');
-  script.src = `app.js?v=${Date.now()}`;
-  document.body.appendChild(script);
-</script>
-
+  <!-- سكربت يضيف app.js مع timestamp تلقائي -->
+  <script>
+    (function() {
+      const script = document.createElement('script');
+      // Date.now() يعطي رقم فريد كل مرة
+      script.src = `app.js?v=${Date.now()}`;
+      script.async = false; // لتأكد تحميله بالترتيب مع باقي السكربتات
+      document.body.appendChild(script);
+    })();
+  </script>
 </body>
 </html>
