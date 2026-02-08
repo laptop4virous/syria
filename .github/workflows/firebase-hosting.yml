@@ -1,0 +1,19 @@
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches:
+      - main   # الفرع الذي تريد النشر منه
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          projectId: "syria-963"   # تأكد من الـ projectId عندك في Firebase
+          channelId: "live"
