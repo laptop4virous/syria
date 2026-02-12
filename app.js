@@ -656,6 +656,27 @@ async function fetchWeather() {
     }
 }
 
+const functions = require("firebase-functions");
+const fetch = require("node-fetch"); // npm install node-fetch@2
+
+exports.getGoldPrice = functions.https.onRequest(async (req, res) => {
+  // السماح بالوصول من أي موقع (CORS)
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET");
+
+  try {
+    // رابط API الذهب الأصلي
+    const response = await fetch("https://data-asg.goldprice.org/dbXRates/USD");
+    const data = await response.json();
+
+    res.status(200).json(data);
+  } catch (err) {
+    console.error("Gold fetch error:", err);
+    res.status(500).json({ error: "Failed to fetch gold prices" });
+  }
+});
+
+
 // Initialize
 fetchRates(baseCurrency);
 fetchGoldPrices();
