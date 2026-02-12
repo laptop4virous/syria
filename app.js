@@ -451,18 +451,28 @@ function displayRates() {
 
 async function fetchGoldPrices() {
     try {
-        const res = await fetch(`https://data-asg.goldprice.org/dbXRates/USD?t=${Date.now()}`);
+        const res = await fetch('https://api.metals.live/v1/spot');
         const data = await res.json();
 
-        const goldPricePerOz = data.items[0].xauPrice;
+        // البحث عن سعر الذهب
+        const goldEntry = data.find(item => item.gold);
+        const goldPricePerOz = goldEntry.gold;
+
         const goldPricePerGram = goldPricePerOz / 31.1035;
 
-        goldPrices = {
-            oz: goldPricePerOz,
-            24: goldPricePerGram,
-            21: goldPricePerGram * 21 / 24,
-            18: goldPricePerGram * 18 / 24
+        const karats = {
+            '24': goldPricePerGram,
+            '21': goldPricePerGram * 0.875,
+            '18': goldPricePerGram * 0.75
         };
+
+        displayGoldPrices(karats);
+
+    } catch (error) {
+        console.error("Gold error:", error);
+    }
+}
+
 
         const usdToTry = currentRates['TRY'] || 1;
         const usdToSyp = getSYPRate(currentRates['SYP'] || 0.000113);
